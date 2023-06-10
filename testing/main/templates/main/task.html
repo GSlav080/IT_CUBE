@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block title%} {{title}} {% endblock %}
+
+{% block content%}
+
+{% for el in info %}
+<div class="alert alert-warning mt-5">
+    <h5>{{el.KURS}}</h5>
+    <p>{{el.NAME}}</p>
+    <a class="nav-link link-dark" href="{% url 'update' el.id %}">Редактировать</a>
+    <a class="nav-link link-dark" href="{% url 'del' el.id %}">Удалить</a>
+</div>
+{% endfor %}
+
+
+{% endblock %}

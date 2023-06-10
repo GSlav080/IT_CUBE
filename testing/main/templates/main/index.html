@@ -1,0 +1,253 @@
+{% extends 'main/base.html' %}
+
+{% block title%} {{title}} {% endblock %}
+
+{% block content%}
+
+<style>
+.dropdown {
+  position: relative;
+  display: inline-block;
+  height:260px;
+  vertical-align:top
+
+}
+.dropdown h3{
+  position: relative;
+
+}
+ing {height:100%;}
+
+li>ul {
+  display: none;
+}
+
+li:hover>ul {
+  display: block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+
+  background-color: #f1f1f1;
+
+  border-radius:2%;
+
+  text-align: center;
+}
+
+
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.order { display: none; }
+
+.item:hover .order { display: block; }
+
+
+
+.button {
+           bottom: 151px;
+           left:10%;
+           text-align: center;
+           bottom:101px;}
+#K1 {width:26%;
+     text-align: center;
+     background-image: url("");
+}
+#K2 {width:31%;
+
+     text-align: center;
+     background-image: url("");
+
+}
+#K3 {width:46%;
+     text-align: center;
+     background-image: url("");
+
+}
+
+
+#K4 {width:33%;
+
+     text-align: center;
+     background-image: url("");
+
+}
+
+
+
+#K5 {width:21%;
+     background-image: url("");
+     text-align: center;
+
+}
+
+#K6 {width:29%;
+     background-image: url("");
+     text-align: center;
+
+
+}
+
+.MENU {
+    height:100%;
+    width:100%;
+     text-align: center;
+     left:0px;
+     top:0px;
+     font-size:13px;
+     border-radius:2%;
+}
+.MENU h2 {font-size:15px;}
+
+
+
+
+
+
+</style>
+
+{% for el in info %}
+{% if el.N == "1" %}
+<div class="dropdown alert text-dark alert-warning mt-2" id="K1">
+{% elif el.N == "2" %}
+  <div class="dropdown alert text-dark alert-warning mt-2" id="K2">
+{% elif el.N == "3" and el.NAME != 'Робототехника 2' %}
+  <div class="dropdown alert text-dark alert-warning mt-2" id="K3">
+{% elif el.N == "4" %}
+  <div class="dropdown alert text-dark alert-warning mt-2" id="K4">
+{% elif el.N == "5" %}
+   <div class="dropdown alert text-dark alert-warning mt-2" id="K5">
+{%elif el.N == "6"%}
+   <div class="dropdown alert text-dark alert-warning mt-2" id="K6">
+
+                        {% endif %}
+                        {% if el.NAME == 'Робототехника 1' or el.NAME == 'Робототехника 2'%}
+                        {% if el.NAME != 'Робототехника 2' %}
+                        <h3>Робототехника</h3>
+                        <div class="dropdown-content MENU" id="ROBO">
+                            <h3>{{el.YEAR}}</h3>
+                            <h2>{{el.NAME_TEACHER}}</h2>
+                            <p>{{el.INFO}}</p>
+
+
+                    {% endif %}
+                    {%else%}
+                    <h3>{{el.NAME}}</h3>
+                    <div class="dropdown-content MENU">
+                        <h3>{{el.YEAR}}</h3>
+                        <h2>{{el.NAME_TEACHER}}</h2>
+                        <p>{{el.INFO}}</p>
+
+
+                {% endif %}
+      {% if el.N == "1" %}
+                        <a href="{% url 'anket1' %}" class="button">
+                            <button type="button" class="btn btn-outline-primary me-2" id="BUTTON1">
+                                ЗАПИСАТЬСЯ НА КУРС
+                            </button>
+                        </a>
+                    </div>
+                </div>
+{% elif el.N == "2" %}
+                        <a href="{% url 'anket2' %}" class="button">
+                            <button type="button" class="btn btn-outline-primary me-2" id="BUTTON2">
+                                ЗАПИСАТЬСЯ НА КУРС
+                            </button>
+                        </a>
+                    </div>
+                </div>
+      {% elif el.N == "3" and el.NAME != 'Робототехника 2' %}
+                                  <a href="{% url 'anket3' %}" class="button">
+                                <button type="button" class="btn btn-outline-primary me-2" id='BUTTON3'>
+                                    ЗАПИСАТЬСЯ НА КУРС
+                                </button>
+                            </a>
+                            <input type="button" value=">" id="B1">
+                        </div>
+                    </div>
+                {% elif el.N == "4" %}
+                        <a href="{% url 'anket4' %}" class="button">
+                            <button type="button" class="btn btn-outline-primary me-2" id="BUTTON4">
+                                ЗАПИСАТЬСЯ НА КУРС
+                            </button>
+                        </a>
+                    </div>
+                </div>{% elif el.N == "5" %}
+                           <a href="{% url 'anket5' %}" class="button">
+                            <button type="button" class="btn btn-outline-primary me-2" id="BUTTON5">
+                                ЗАПИСАТЬСЯ НА КУРС
+                            </button>
+                        </a>
+                    </div>
+                </div>
+{%elif el.N == "6"%}
+                           <a href="{% url 'anket6' %}" class="button">
+                            <button type="button" class="btn btn-outline-primary me-2" id="BUTTON6">
+                                ЗАПИСАТЬСЯ НА КУРС
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                        {% endif %}
+
+                {% endfor%}
+
+
+<script>function change()
+    {
+        var elem = document.getElementById("ROBO");
+        if(elem.children[0].outerHTML== '<h3>1-4 классы</h3>')
+        {
+        elem.outerHTML = `<div class="dropdown-content MENU " ;" id="ROBO">
+            <h3>5-8 классы</h3>
+            <h2>Кузьмичев Павел</h2>
+            <p>Создание и программирование роботов и автоматизированных устройств на базе конструкторов LEGO и др.
+                Конструируя собственные устройства, обучающиеся научатся ставить задачи и находить решения, получат базовые
+                знания по программированию, а также по физике, механике и электрике</p>
+            <a href="{% url 'anket7' %}" class="button">
+                <button type="button" class="btn btn-outline-primary me-2" id='BUTTON3'>
+                    ЗАПИСАТЬСЯ НА КУРС
+                </button>
+            </a>
+                <input type="button" value="->" id="B1">
+        </div>`
+        ;
+         var element = document.getElementById("B1");
+        element.onclick = change;
+        }
+        else
+        {
+
+            elem.outerHTML = `<div class="dropdown-content MENU " ;" id="ROBO">
+            <h3>1-4 классы</h3>
+            <h2>Ермолина Лариса Александровна</h2>
+            <p>Создание и программирование роботов и автоматизированных устройств на базе конструкторов LEGO и др.
+                Конструируя собственные устройства, обучающиеся научатся ставить задачи и находить решения, получат базовые
+                знания по программированию, а также по физике, механике и электрике</p>
+            <a href="{% url 'anket3' %}" class="button" id='BUTTON3'>
+                <button type="button" class="btn btn-outline-primary me-2">
+                    ЗАПИСАТЬСЯ НА КУРС
+                </button>
+            </a>
+            <input type="button" value=">" id="B1">
+
+        </div>`
+
+        }
+         var element = document.getElementById("B1");
+        element.onclick = change;
+
+        }
+        var element = document.getElementById("B1");
+        element.onclick = change;
+                    </script>
+                {% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'main/base.html' %}
+
+{% block title%} {{title}} {% endblock %}
+
+{% block content%}
+<form method="post">
+    {% csrf_token %}
+    <div class="alert alert-warning mt-5">
+        <p>Название курса: {{form.KURS}}</p>
+        <p>ФИО: {{form.NAME}}
+        <p>
+        <p>Возраст: {{form.YEAR}}</p>
+        <p>Контактный номер или почта: {{form.NUMBER}}</p>
+        <p style="display:none">{{form.USER}}</p>
+
+
+        <button type="submit">Добавить</button>
+    </div>
+    <span>{{error}}</span>
+</form>
+
+{% endblock %}
